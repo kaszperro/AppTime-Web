@@ -6,10 +6,6 @@ import {
     Switch
 } from 'react-router-dom';
 
-import Header from './headerComponent/header';
-import Footer from './footerComponent/footer'
-
-
 //--- PAGES
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -18,7 +14,7 @@ import login from './auth/login';
 //--- 
 
 //--- STYLES
-import '../Assets/css/default.min.css'
+import '../assets/css/default.min.css'
 //---
 
 
@@ -32,7 +28,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={HomePage} />
                         <Route path='/test' component={TestPage} />
-                        <Route path='/login' component = {login} />
+                        <Route path='/login' component={login} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>
