@@ -35,7 +35,7 @@ export function errorHandler(dispatch, error, type) {
     }
 }
 
-export function loginUser({ email, password }) {
+export function loginUser({ email, password }, successFunction, errorFunction) {
     return function (dispatch) {
         axios.post(`${API_URL}/accounts/auth/token/obtain/`, {
             email: email,
@@ -43,12 +43,11 @@ export function loginUser({ email, password }) {
         }).then(response => {
             cookie.set('token', response.data.token, {path: '/'});
             dispatch({ type: AUTH_USER });
-            console.log(cookie);
+            successFunction();
             // window.location.href = CLIENT_ROOT_URL + '/dashboard';
         }).catch((error) => {
-            console.log("robie errora " + error);
-            console.log(error.response)
             errorHandler(dispatch, error.response, AUTH_ERROR)
+            errorFunction(error.response.data);
         });
     }
 }

@@ -10,11 +10,11 @@ import {
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import TestPage from './pages/TestPage';
-import login from './auth/login';
+import LoginForm from './auth/LoginForm';
 //--- 
 
 //--- STYLES
-import '../assets/css/default.min.css'
+//import '../assets/css/default.min.css'
 //---
 
 
@@ -28,7 +28,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={HomePage} />
                         <Route path='/test' component={TestPage} />
-                        <Route path='/login' component={login} />
+                        <Route path='/login' component={LoginForm} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>
