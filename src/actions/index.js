@@ -44,8 +44,7 @@ export function loginUser({ email, password }, successFunction, errorFunction) {
             cookie.set('token', response.data.token, {path: '/'});
             dispatch({ type: AUTH_USER });
             successFunction();
-            // window.location.href = CLIENT_ROOT_URL + '/dashboard';
-        }).catch((error) => {
+        }).catch(error => {
             errorHandler(dispatch, error.response, AUTH_ERROR)
             errorFunction(error.response.data);
         });

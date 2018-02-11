@@ -10,7 +10,7 @@ import {
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import TestPage from './pages/TestPage';
-import LoginForm from './auth/LoginForm';
+import LoginPage from './pages/LoginPage';
 //--- 
 
 //--- STYLES
@@ -28,7 +28,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={HomePage} />
                         <Route path='/test' component={TestPage} />
-                        <Route path='/login' component={LoginForm} />
+                        <Route path='/login' component={LoginPage} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>
