@@ -54,7 +54,7 @@ class LoginForm extends Component {
             <Input type="password" name="password" id="formPassword" placeholder="Hasło" />
           </Col>
         </FormGroup>
-        <Button color="primary">Zaloguj!</Button>
+        <Button color="primary" className="float-right">Zaloguj!</Button>
       </Form>
     );
   }
