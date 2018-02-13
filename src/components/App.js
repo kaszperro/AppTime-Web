@@ -6,6 +6,8 @@ import {
     Switch
 } from 'react-router-dom';
 
+import Navbar from './snippets/navigation/Navbar'
+
 //--- PAGES
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -24,14 +26,16 @@ class App extends Component {
     render() {
         return (
             <Router>
-               
+                <div>
+                    <Navbar />
                     <Switch>
+
                         <Route exact path="/" component={HomePage} />
                         <Route exact path='/test' component={TestPage} />
                         <Route exact path='/login' component={LoginPage} />
                         <Route component={NotFoundPage} />
                     </Switch>
-              
+                </div>
             </Router>
         );
     }

@@ -15,21 +15,36 @@ import {
     DropdownItem
 } from 'reactstrap';
 
+import LoginForm from '../forms/LoginForm'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        // this.activeEvent = this.activeEvent.bind(this);
+        this.loginSuccess = this.loginSuccess.bind(this)
+
+        this.state = {
+            modal: false
+        };
+        this.toggle = this.toggle.bind(this);
     }
 
-    //   activeEvent(e) {
-    //      console.log("is active")
-    //  }
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+    loginSuccess() {
+        console.log("suc login")
+        this.toggle()
+    }
 
     render() {
         return (
             <NavbarBoot color="dark" dark expand="md">
                 <NavbarBrand href="/">AppTime</NavbarBrand>
-  
+
 
                 <Nav className="ml-auto" navbar>
 
@@ -43,9 +58,17 @@ class Navbar extends Component {
 
                     <NavItem>
                         <LinkContainer to="/login" >
-                            <NavLink>Login</NavLink>
+                            <NavLink>Cos innego</NavLink>
                         </LinkContainer>
                     </NavItem>
+
+                    <Button color="primary" onClick={this.toggle}>Zaloguj</Button>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                        <ModalHeader toggle={this.toggle}>Zaloguj</ModalHeader>
+                        <ModalBody>
+                            <LoginForm loginSuccess={this.loginSuccess} />
+                        </ModalBody>
+                    </Modal>
 
                 </Nav>
 
