@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import { loginUser } from '../../../actions';
-import $ from 'jquery';
-import {makeFormErrors} from './FormErrorsHelper'
+import { makeFormErrors, removeElementsByClass } from './FormErrorsHelper'
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 
 const form = reduxForm({
   form: 'login'
@@ -18,7 +19,6 @@ class LoginForm extends Component {
 
   formSubmit(e) {
     e.preventDefault();
-
     var form = e.target
     var sendData = {
       email: form.email.value,
@@ -26,16 +26,12 @@ class LoginForm extends Component {
     }
     this.props.loginUser(sendData, loginSuccess.bind(this), loginError);
 
-    function deleteInsered(className) {
-      $('.' + className + '').remove();
-    }
-
     function loginSuccess() {             //
-      deleteInsered("created")
-      if(this.props.loginSuccess) {
+      removeElementsByClass("created")
+      if (this.props.loginSuccess) {
         this.props.loginSuccess()
       }
-      
+
     }
 
     function loginError(error) {          //
@@ -45,19 +41,21 @@ class LoginForm extends Component {
 
   render() {
     return (
-        <form onSubmit={this.formSubmit}>
+      <Form onSubmit={this.formSubmit}>
+        <FormGroup>
+          <Label for="formEmail">Email</Label>
+          <Input type="email" name="email" id="formEmail" placeholder="Email" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplePassword">Hasło</Label>
+          <Input type="password" name="password" id="formPassword" placeholder="Hasło" />
+        </FormGroup>
+        <Button>Zaloguj!</Button>
+      </Form>
 
-          <div className="form-group">
-            <label>Email</label>
-            <Field placeholder="email" name="email" className="form-control" component="input" type="text" />
-          </div>
 
-          <div className="form-group">
-            <label>Hasło</label>
-            <Field name="password" className="form-control" component="input" type="password" />
-          </div>
-          <button type="submit" className="btn btn-primary">Login</button>
-        </form>
+
+
     );
   }
 }

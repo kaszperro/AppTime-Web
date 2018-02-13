@@ -1,7 +1,8 @@
-import $ from 'jquery';
-
-function deleteInsered(className) {
-    $('.' + className + '').remove();
+export function removeElementsByClass(className){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
 }
 
 function createNonFieldErrors(error, form) {
@@ -48,8 +49,7 @@ function createFieldErrors(error, form) {
 }
 
 export function makeFormErrors(error, form) {
-    deleteInsered("created")
-
+    removeElementsByClass("created")
     createNonFieldErrors(error, form);
     createFieldErrors(error, form);   
 }
