@@ -43,9 +43,10 @@ class Navbar extends Component {
     render() {
         return (
             <NavbarBoot color="dark" dark expand="md">
-                <NavbarBrand href="/">AppTime</NavbarBrand>
+                <LinkContainer to="/" >
+                    <NavbarBrand>AppTime</NavbarBrand>
 
-
+                </LinkContainer>
                 <Nav className="ml-auto" navbar>
 
 
