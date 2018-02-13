@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import { loginUser } from '../../../actions';
 import { makeFormErrors, removeElementsByClass } from './FormErrorsHelper'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 const form = reduxForm({
@@ -42,20 +42,20 @@ class LoginForm extends Component {
   render() {
     return (
       <Form onSubmit={this.formSubmit}>
-        <FormGroup>
-          <Label for="formEmail">Email</Label>
-          <Input type="email" name="email" id="formEmail" placeholder="Email" />
+        <FormGroup row>
+          <Label for="formEmail" sm={2}>Email</Label>
+          <Col sm={10}>
+            <Input type="email" name="email" id="formEmail" placeholder="Email" />
+          </Col>
         </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword">Hasło</Label>
-          <Input type="password" name="password" id="formPassword" placeholder="Hasło" />
+        <FormGroup row>
+          <Label for="examplePassword" sm={2}>Hasło</Label>
+          <Col sm={10}>
+            <Input type="password" name="password" id="formPassword" placeholder="Hasło" />
+          </Col>
         </FormGroup>
-        <Button>Zaloguj!</Button>
+        <Button color="primary">Zaloguj!</Button>
       </Form>
-
-
-
-
     );
   }
 }

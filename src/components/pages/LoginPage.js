@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LoginForm from '../snippets/forms/LoginForm'
-//import Modal from '../snippets/Modal'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 class LoginPage extends Component {
     constructor(props) {
@@ -36,8 +35,6 @@ class LoginPage extends Component {
                     </ModalBody>
                    
                 </Modal>
-
-
             </div>
         );
     }
