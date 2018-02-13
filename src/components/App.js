@@ -24,14 +24,14 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div className="container">
+               
                     <Switch>
                         <Route exact path="/" component={HomePage} />
-                        <Route path='/test' component={TestPage} />
-                        <Route path='/login' component={LoginPage} />
+                        <Route exact path='/test' component={TestPage} />
+                        <Route exact path='/login' component={LoginPage} />
                         <Route component={NotFoundPage} />
                     </Switch>
-                </div>
+              
             </Router>
         );
     }
