@@ -11,6 +11,8 @@ import {
 import LoginForm from '../forms/LoginForm'
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
+import { checkLogin } from '../../../actions';
+
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +33,18 @@ class Navbar extends Component {
     loginSuccess() {
         this.loginToggle()
 
+    }
+
+    componentDidMount() {
+        checkLogin(isLogged, isntLogged)
+
+        function isLogged() {
+            console.log("jest zalogowany")
+        }
+
+        function isntLogged() {
+            console.log("nie jest zalogo")
+        }
     }
 
     render() {
