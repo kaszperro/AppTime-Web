@@ -41,14 +41,16 @@ export function loginUser({ email, password }, successFunction, errorFunction) {
         axios.post(`${API_URL}/accounts/auth/token/obtain/`, {
             email: email,
             password: password
-        }).then(response => {
-            cookie.set('token', response.data.token, {path: '/'});
-            dispatch({ type: AUTH_USER });
-            successFunction();
-        }).catch(error => {
-            errorHandler(dispatch, error.response, AUTH_ERROR)
-            errorFunction(error.response.data);
-        });
+        }).then(
+            (response) => {
+                cookie.set('token', response.data.token, { path: '/' });
+                dispatch({ type: AUTH_USER });
+                successFunction();
+            },
+            (error) => {
+                errorHandler(dispatch, error.response, AUTH_ERROR)
+                errorFunction(error.response.data);
+            })
     }
 }
 

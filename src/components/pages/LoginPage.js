@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import LoginForm from '../snippets/forms/LoginForm'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -19,16 +17,13 @@ class LoginPage extends Component {
     }
 
     loginSuccess() {
-        console.log("suc login")
         this.toggle()
     }
-
 
     render() {
         return (
             <div>
                 Siema Elo
-
             </div>
         );
     }
