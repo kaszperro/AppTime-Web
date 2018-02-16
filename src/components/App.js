@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Route,
-    Link,
     Switch
 } from 'react-router-dom';
 
-import Header from './headerComponent/header';
-import Footer from './footerComponent/footer'
-
+import Navbar from './snippets/navigation/Navbar'
 
 //--- PAGES
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import TestPage from './pages/TestPage';
-import login from './auth/login';
+import LoginPage from './pages/LoginPage';
 //--- 
 
 //--- STYLES
-import '../Assets/css/default.min.css'
+//import '../assets/css/default.min.css'
 //---
 
 
@@ -28,11 +25,13 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div className="container">
+                <div>
+                    <Navbar />
                     <Switch>
+
                         <Route exact path="/" component={HomePage} />
-                        <Route path='/test' component={TestPage} />
-                        <Route path='/login' component = {login} />
+                        <Route exact path='/test' component={TestPage} />
+                        <Route exact path='/login' component={LoginPage} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>

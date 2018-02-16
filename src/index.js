@@ -8,9 +8,10 @@ import reducers from './reducers/index';
 
 //import { AUTH_USER } from './actions/types';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
-
 
 ReactDOM.render(
     <Provider store={store}>
