@@ -16,11 +16,12 @@ import {ProfileDropdown} from "../accounts/ProfileDropdown";
 class Navbar extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             modal: false,
             isLogged: false
         };
+
+
         this.loginToggle = this.loginToggle.bind(this);
         this.loginSuccess = this.loginSuccess.bind(this);
         loggedIn = loggedIn.bind(this);
@@ -29,14 +30,12 @@ class Navbar extends Component {
         checkLogin(loggedIn, loggedOut);
 
         function loggedIn() {
-            console.log("jest zalogowany");
             this.setState({
                 isLogged: true
             })
         }
 
         function loggedOut() {
-            console.log("nie jest zalogo");
             this.setState({
                 isLogged: false
             })
@@ -51,9 +50,11 @@ class Navbar extends Component {
 
     loginSuccess() {
         this.loginToggle();
-        this.setState({
-            isLogged: true
-        })
+        setTimeout(function changeState() {
+            this.setState({
+                isLogged: true
+            })
+        }.bind(this), 200);
     }
 
     render() {

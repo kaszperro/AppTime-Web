@@ -31,10 +31,12 @@ class LoginForm extends Component {
 
         function loginSuccess() {             //
             removeElementsByClass("created");
-            if (this.props.loginSuccess) {
-                this.props.loginSuccess()
-            }
-            this.setState({loading: false})
+            this.setState({loading: false},function callback() {
+                if (this.props.loginSuccess) {
+                    this.props.loginSuccess()
+                }
+            })
+
         }
 
         function loginError(error) {          //
@@ -58,18 +60,6 @@ class LoginForm extends Component {
                     </FrontComponent>
                 </RelativeContainer>
             </div>
-
-
-            {/*  button = <div className="float-right" style={{position: "relative"}}>
-
-                <Button color="primary" disabled style={{color: "transparent"}}>
-                    Zaloguj!
-                </Button>
-                <div style={{position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)",}}>
-                    <PulseLoader size={9} loading={true} color={"#4A90E2"}/>
-                </div>
-
-            </div>;*/}
         } else {
             button = <Button className="float-right" color="primary">
                 Zaloguj!
