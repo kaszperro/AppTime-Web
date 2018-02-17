@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { LinkContainer } from "react-router-bootstrap";
+import React, {Component} from 'react';
+import {LinkContainer} from "react-router-bootstrap";
 import {
     Navbar as NavbarBoot,
     NavbarBrand,
@@ -9,19 +9,38 @@ import {
 } from 'reactstrap';
 
 import LoginForm from '../forms/LoginForm'
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-
-import { checkLogin } from '../../../actions';
+import {Button, Modal, ModalHeader, ModalBody, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import {checkLogin} from '../../../actions';
+import {ProfileDropdown} from "../accounts/ProfileDropdown";
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.loginSuccess = this.loginSuccess.bind(this)
 
         this.state = {
-            modal: false
+            modal: false,
+            isLogged: false
         };
         this.loginToggle = this.loginToggle.bind(this);
+        this.loginSuccess = this.loginSuccess.bind(this);
+        loggedIn = loggedIn.bind(this);
+        loggedOut = loggedOut.bind(this);
+
+        checkLogin(loggedIn, loggedOut);
+
+        function loggedIn() {
+            console.log("jest zalogowany");
+            this.setState({
+                isLogged: true
+            })
+        }
+
+        function loggedOut() {
+            console.log("nie jest zalogo");
+            this.setState({
+                isLogged: false
+            })
+        }
     }
 
     loginToggle() {
@@ -31,54 +50,51 @@ class Navbar extends Component {
     }
 
     loginSuccess() {
-        this.loginToggle()
-
-    }
-
-    componentDidMount() {
-        checkLogin(isLogged, isntLogged)
-
-        function isLogged() {
-            console.log("jest zalogowany")
-        }
-
-        function isntLogged() {
-            console.log("nie jest zalogo")
-        }
+        this.loginToggle();
+        this.setState({
+            isLogged: true
+        })
     }
 
     render() {
+        let profile = null;
+        if (this.state.isLogged) {
+            profile = <NavItem>
+                <ProfileDropdown/>
+            </NavItem>
+        } else {
+            profile = <div>
+                <Button color="primary" onClick={this.loginToggle}>Zaloguj</Button>
+                <Modal isOpen={this.state.modal} toggle={this.loginToggle}>
+                    <ModalHeader toggle={this.loginToggle}>Zaloguj</ModalHeader>
+                    <ModalBody>
+                        <LoginForm loginSuccess={this.loginSuccess}/>
+                    </ModalBody>
+                </Modal>
+            </div>
+        }
+
+
         return (
             <NavbarBoot color="dark" dark expand="md">
-                <LinkContainer to="/" >
+                <LinkContainer to="/">
                     <NavbarBrand>AppTime</NavbarBrand>
 
                 </LinkContainer>
                 <Nav className="ml-auto" navbar>
 
-
                     <NavItem>
-                        <LinkContainer exact to="/" >
+                        <LinkContainer exact to="/">
                             <NavLink>Home</NavLink>
                         </LinkContainer>
                     </NavItem>
 
-
                     <NavItem>
-                        <LinkContainer to="/login" >
+                        <LinkContainer to="/login">
                             <NavLink>Cos innego</NavLink>
                         </LinkContainer>
                     </NavItem>
-
-
-                    <Button  color="primary" onClick={this.loginToggle}>Zaloguj</Button>
-                    <Modal isOpen={this.state.modal} toggle={this.loginToggle}>
-                        <ModalHeader toggle={this.loginToggle}>Zaloguj</ModalHeader>
-                        <ModalBody>
-                            <LoginForm loginSuccess={this.loginSuccess} />
-                        </ModalBody>
-                    </Modal>
-
+                    {profile}
                 </Nav>
 
             </NavbarBoot>
