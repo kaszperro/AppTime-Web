@@ -49,6 +49,7 @@ export function loginUser({ email, password }, successFunction, errorFunction) {
             password: password,
         }, {withCredentials:true}).then(
             (response) => {
+                cookie.set('token', response.data.token, { path: '/' });
                // cookie.set('token', response.data.token, { path: '/' });
                 dispatch({ type: AUTH_USER });
                 successFunction();
@@ -64,7 +65,7 @@ export function registerUser({ email, firstName, lastName, password }) {
     return function (dispatch) {
         axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
             .then(response => {
-                cookie.save('token', response.data.token, { path: '/' });
+                cookie.set('token', response.data.token, { path: '/' });
                 dispatch({ type: AUTH_USER });
                 //window.location.href = CLIENT_ROOT_URL + '/dashboard';
             })
