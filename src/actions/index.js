@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-//import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie';
 import {
     AUTH_USER,
     AUTH_ERROR,
@@ -10,12 +10,9 @@ import {
 
 //import { checkLogin } from './token'
 import  API_URL from "./apiURL";
-
-
-
 //const API_URL = 'http://127.0.0.1:8000';
 //const API_URL = 'https://timetapp.herokuapp.com';
-//const cookie = new Cookies();
+const cookie = new Cookies();
 //axios.defaults.withCredentials = true;
 
 export function errorHandler(dispatch, error, type) {
@@ -67,7 +64,7 @@ export function registerUser({ email, firstName, lastName, password }) {
     return function (dispatch) {
         axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
             .then(response => {
-               // cookie.save('token', response.data.token, { path: '/' });
+                cookie.save('token', response.data.token, { path: '/' });
                 dispatch({ type: AUTH_USER });
                 //window.location.href = CLIENT_ROOT_URL + '/dashboard';
             })
