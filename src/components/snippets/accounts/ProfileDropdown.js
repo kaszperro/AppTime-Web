@@ -5,14 +5,31 @@ import {
     injectGlobal,
     fontFace
 } from "react-emotion";
+import {getUserInfo as getUserInfoAPI} from '../../../actions';
 
 export class ProfileDropdown extends Component {
     constructor(props) {
         super(props);
 
         this.dropdownToggle = this.dropdownToggle.bind(this);
-        this.state = {dropdownOpen: false};
+        this.state = {dropdownOpen: false,name:""};
+        this.getUserInfo = this.getUserInfo.bind(this)
+        this.successUserInfo = this.successUserInfo.bind(this)
     }
+    componentDidMount() {
+        this.getUserInfo()
+    }
+
+    getUserInfo() {
+        getUserInfoAPI(['name', 'email'], this.successUserInfo)
+    }
+
+    successUserInfo(result) {
+        this.setState({
+            name: result['name']
+        })
+    }
+
 
     dropdownToggle() {
         this.setState({
@@ -25,7 +42,7 @@ export class ProfileDropdown extends Component {
 
                 <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.dropdownToggle}>
                     <DropdownToggle caret>
-                        <strong>Salman</strong>
+                        <strong>{this.state.name}</strong>
                         <span className="glyphicon glyphicon-chevron-down"></span>
                     </DropdownToggle>
                     <DropdownMenu>

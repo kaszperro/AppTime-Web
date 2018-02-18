@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@m59/qs": "^2.0.3",
     "@types/react": "^16.0.38",
     "axios": "^0.17.1",
     "babel-plugin-emotion": "^9.0.1",

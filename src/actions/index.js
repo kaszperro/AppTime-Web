@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-import Cookies from 'universal-cookie';
+//import Cookies from 'universal-cookie';
 import {
     AUTH_USER,
     AUTH_ERROR,
@@ -10,10 +9,8 @@ import {
 
 //import { checkLogin } from './token'
 import  API_URL from "./apiURL";
-//const API_URL = 'http://127.0.0.1:8000';
-//const API_URL = 'https://timetapp.herokuapp.com';
-const cookie = new Cookies();
-//axios.defaults.withCredentials = true;
+
+//const cookie = new Cookies();
 
 export function errorHandler(dispatch, error, type) {
     let errorMessage = '';
@@ -47,10 +44,12 @@ export function loginUser({ email, password }, successFunction, errorFunction) {
         axios.post(`${API_URL}/accounts/auth/token/obtain/`, {
             email: email,
             password: password,
-        }, {withCredentials:true}).then(
+        }, {
+            withCredentials:true
+
+        }).then(
             (response) => {
-                cookie.set('token', response.data.token, { path: '/' });
-               // cookie.set('token', response.data.token, { path: '/' });
+                //cookie.set('token', response.data.token, { path: '/' });
                 dispatch({ type: AUTH_USER });
                 successFunction();
             },
@@ -65,7 +64,7 @@ export function registerUser({ email, firstName, lastName, password }) {
     return function (dispatch) {
         axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
             .then(response => {
-                cookie.set('token', response.data.token, { path: '/' });
+                //cookie.set('token', response.data.token, { path: '/' });
                 dispatch({ type: AUTH_USER });
                 //window.location.href = CLIENT_ROOT_URL + '/dashboard';
             })
@@ -102,3 +101,4 @@ export function logoutUser() {
 // }
 
 export * from './token'
+export * from './users'
