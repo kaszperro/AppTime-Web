@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import {UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import {
     css,
     injectGlobal,
     fontFace
 } from "react-emotion";
 import {getUserInfo as getUserInfoAPI} from '../../../actions';
+
+//import '../../../assets/css/dropdown.min.css';
 
 export class ProfileDropdown extends Component {
     constructor(props) {
@@ -40,19 +42,20 @@ export class ProfileDropdown extends Component {
     render() {
         return (
 
-                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.dropdownToggle}>
-                    <DropdownToggle caret>
-                        <strong>{this.state.name}</strong>
-                        <span className="glyphicon glyphicon-chevron-down"></span>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem header>Header</DropdownItem>
-                        <DropdownItem disabled>Action</DropdownItem>
-                        <DropdownItem>Another Action</DropdownItem>
-                        <DropdownItem divider/>
-                        <DropdownItem>Another Action</DropdownItem>
-                    </DropdownMenu>
-                </ButtonDropdown>
+            <UncontrolledDropdown>
+                <DropdownToggle caret>
+                    <strong>{this.state.name}</strong>
+                </DropdownToggle>
+                <DropdownMenu style={{right:"0", left:"auto"}}>
+                    <DropdownItem header>Header</DropdownItem>
+                    <DropdownItem disabled>Action</DropdownItem>
+                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+            </UncontrolledDropdown>
+
+
 
         );
     }
