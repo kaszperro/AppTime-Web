@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class NotFoundPage extends Component {
+export class NotFoundPage extends Component {
    render() {
       return (
             <p>Nie ma takiej strony :(</p>
@@ -8,4 +8,3 @@ class NotFoundPage extends Component {
    }
 }
 
-export default NotFoundPage;

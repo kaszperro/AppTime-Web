@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-class LoginPage extends Component {
+
+export class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.loginSuccess = this.loginSuccess.bind(this)
@@ -28,5 +29,3 @@ class LoginPage extends Component {
         );
     }
 }
-
-export default LoginPage;
