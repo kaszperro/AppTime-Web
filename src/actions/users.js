@@ -1,6 +1,6 @@
 import axios from 'axios';
 import API_URL from "./apiURL";
-import {stringify, parse, extract, replace} from '@m59/qs'
+//import {stringify, parse, extract, replace} from '@m59/qs'
 
 export function getUserInfo(fields, successFunction=null, errorFunction=null) {
     axios.get(`${API_URL}/accounts/user-info/`, {
@@ -8,7 +8,20 @@ export function getUserInfo(fields, successFunction=null, errorFunction=null) {
             fields: fields
         },
         paramsSerializer: function (params) {
-            return stringify(params, {arrayFormat: {delimiter: ','}})
+            let myOut = "";
+            for (let par in params) {
+                myOut += par + "=";
+                for(let f in params[par]) {
+                    myOut += params[par][f]
+                    if(f < params[par].length-1) {
+                        myOut += ","
+                    }
+
+                }
+            }
+            return myOut
+
+           // return stringify(params, {arrayFormat: {delimiter: ','}})
         },
         withCredentials: true,
     }).then(

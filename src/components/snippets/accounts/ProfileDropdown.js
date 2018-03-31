@@ -7,8 +7,6 @@ import {
 } from "react-emotion";
 import {getUserInfo as getUserInfoAPI} from '../../../actions';
 
-//import '../../../assets/css/dropdown.min.css';
-
 export class ProfileDropdown extends Component {
     constructor(props) {
         super(props);
