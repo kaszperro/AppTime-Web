@@ -8,16 +8,14 @@ import {
 import Navbar from './snippets/navigation/Navbar'
 
 //--- PAGES
-import HomePage from './pages/HomePage';
-import NotFoundPage from './pages/NotFoundPage';
-import TestPage from './pages/TestPage';
-import LoginPage from './pages/LoginPage';
+
+import {HomePage, NotFoundPage, TestPage, LoginPage, ProfilePage} from "./pages"
+
 //--- 
 
 //--- STYLES
 //import '../assets/css/default.min.css'
 //---
-
 
 
 
@@ -32,6 +30,7 @@ class App extends Component {
                         <Route exact path="/" component={HomePage} />
                         <Route exact path='/test' component={TestPage} />
                         <Route exact path='/login' component={LoginPage} />
+                        <Route exact path='/profile' component={ProfilePage} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>

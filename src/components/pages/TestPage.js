@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TestPage extends Component {
+export class TestPage extends Component {
    render() {
       return (
          <div className="container-fluid">
@@ -9,5 +9,3 @@ class TestPage extends Component {
       );
    }
 }
-
-export default TestPage;
